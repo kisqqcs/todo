@@ -4,12 +4,21 @@
     //Parts of date
     const bodyDay = document.querySelector('.body__day');
     const bodyDate = document.querySelector('.body__date');
-
+    
     //Parts of todo input
     const todoAddBtn = document.querySelector('.todo__btn');
     const todoInput = document.querySelector(".todo__input");
     const todoListPending = document.querySelector('.todo__list--pending');
-  
+    
+    
+    //Parts of Pending Items
+    let TodoItemsNumber = document.querySelector(".todo__number")
+    
+    // Set Event Listeners
+    const setListeners = () => {
+        todoAddBtn.addEventListener('click', addNewTodo);
+
+    };
     //Names of the days
     const dayNames = [
         'Sunday',
@@ -46,7 +55,7 @@
         showDate();
         setListeners();
         loadExistingTodos();
-        pendingItemsNumber();
+        calculatePendingItemsNr();
     };
     
     //Load existing todos.
@@ -73,11 +82,6 @@
         bodyDate.textContent = day.join('-');
 
     }
-    // Set Event Listeners
-    const setListeners = () => {
-        todoAddBtn.addEventListener('click', addNewTodo);
-
-    };
 
     //Save and add Todo in the Database
     const addNewTodo =  () => {
@@ -93,6 +97,7 @@
         todos.push(todo);
         localDB.setItem('todos', todos);
         showTodo(todo);
+        calculatePendingItemsNr();
         todoInput.value = '';
     };
 
@@ -104,19 +109,28 @@
         todoItem.innerHTML = `
             <input type="checkbox">
             <span>${todo.text}</span>   
-            <button>
+            <button class="trash--btn">
                 <i class="fa fa-trash"></i>
             </button>
         `;
+        const deleteTodoBtn = document.querySelector(".trash--btn");
+        deleteTodoBtn.addEventListener('click', deleteTodo);
     };
-//A teendő lista feletti mondatban (You have X pending items) látható, hogy szerepel
-//a teendők száma, ez dinamikusan frissüljön mindig
-    //Pending items number
-    const pendingItemsNumber = () => {
-        Object.keys(todos).length;
-       
-    } 
-    
+    //Pending items number (még nincsen benne a done!!!)
+    const calculatePendingItemsNr = () => {
+        TodoItemsNumber.textContent= Object.keys(todos).length;
+    };
+
+    //Delete todos (1. törli a div-et 1.törli az objektumból az elemet)
+        const deleteTodo = (e) => {
+            const item = e.target;
+            if(item.classList[0] === 'trash--btn') {
+                const todo = item.parentElement;
+                todo.remove();
+            };
+            
+        };
+
     
     init();
 })();
