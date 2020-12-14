@@ -3,46 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do List</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Header. Name of this day. -->
-        <h3 class="body__day">Tuesday</h3>
-    
-        <!-- Date -->
-        <h3 class="body__date">2020-12-20</h3>
-    
-        <!-- ¨Insert new todo element -->
-        <div class="body__todo-insert">
-            <input type="text" class="todo__input" placeholder="Take the garbage out" type="submit">
-            <button class="todo__btn">
-                <i class="fa fa-plus"></i>
-            </button>
-        </div>
-    
-        <!-- ¨Display todos. -->
-        <p>You have <span class="todo__number">0</span>
-            pending items.    
-        </p>
-    
-        <!-- Todo list -->
-        <div class="todo__list--pending">
-        </div>
-        <div class="todo__list--done">
-        </div>
-   
-        <!-- Footer menu -->
-        <div class="todo__footer">
-            <button class="footer__btn--complete">
-                Show Complete
-            </button>
-            <button class="footer__btn--clear">
-                Clear All
-            </button></div>
+    <header>
+         <!-- Title -->
+        <h1>Todo List</h1>
+        <!-- Name of this day. -->
+    </header>
+    <div class="date-container">
+    <h3 class="body__day">Tuesday</h3>
+
+    <!-- Date -->
+    <h3 class="body__date">2020-12-20</h3>
     </div>
+    <form>
+        <input type="text" class="todo-input" placeholder="Take the garbage out">
+        <button class="todo-button" type="submit">
+            <i class="fas fa-plus-square"></i>
+        </button>
+        <!-- Display Pending Items -->
+        You have <span class="todo__number">0</span> pending items.    
+    </form>
+    <div class="todo-container">
+        <ul class="todo-list"></ul>
+    </div>
+      <!-- Footer menu -->
+      <div class="todo__footer">
+        <button class="footer__btn--complete">
+            Show Complete
+        </button>
+        <button class="footer__btn--clear">
+            Clear All
+        </button></div>
+    </div>
+
 
     <script src="./assets/script.js"></script>
 </body>
